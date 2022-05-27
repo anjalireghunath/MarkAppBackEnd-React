@@ -21,6 +21,20 @@ new Mongoose.Schema(
 )
 Mongoose.connect("mongodb+srv://anjalireghunath:9846434831@cluster0.ursz9.mongodb.net/marksDB")
 
+app.post("/api/search",(req,res)=>{
+    var getAdmno=req.body
+    markModel.find(getAdmno,(error,data)=>{
+        if(error)
+        {
+            res.send({"status":"error"})
+        }
+        else
+        {
+            res.send(data)
+        }
+    })
+})
+
 app.get("/api/viewall",(req,res)=>{
     markModel.find(
         (error,data)=>{
