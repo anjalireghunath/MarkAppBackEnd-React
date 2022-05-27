@@ -21,6 +21,20 @@ new Mongoose.Schema(
 )
 Mongoose.connect("mongodb+srv://anjalireghunath:9846434831@cluster0.ursz9.mongodb.net/marksDB")
 
+app.post("/api/delete",(req,res)=>{
+    var getId=req.body
+    markModel.findByIdAndRemove(getId,(error,data)=>{
+        if(error)
+        {
+            res.send({"status":"error"})
+        }
+        else
+        {
+            res.send({"status":"success"})
+        }
+    })
+})
+
 app.post("/api/search",(req,res)=>{
     var getAdmno=req.body
     markModel.find(getAdmno,(error,data)=>{
